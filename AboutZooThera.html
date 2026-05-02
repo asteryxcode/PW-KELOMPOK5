@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Zoothera Global Group</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --golden-cream: #fff8dd;
+            --dark-charcoal: #1a1a1a;
+            --accent-gold: #c5a059;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fafafa;
+            color: var(--dark-charcoal);
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Bootstrap Overrides */
+        .bg-charcoal { background-color: var(--dark-charcoal); }
+        .text-gold { color: var(--accent-gold); }
+        
+        .navbar { background-color: rgba(26, 26, 26, 0.98); }
+        .nav-link { color: var(--golden-cream) !important; font-weight: 600; transition: 0.3s; }
+        .nav-link:hover { color: var(--accent-gold) !important; }
+
+        .hero {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('Pict/portrait-cute-red-panda.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+        }
+
+        .misi-card {
+            border-left: 5px solid var(--accent-gold);
+            transition: 0.3s;
+        }
+        .misi-card:hover { transform: translateX(10px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+
+        /* --- CSS KHUSUS FOOTER BARU --- */
+        .footer-black {
+            background-color: #0d0d0a;
+            color: #cccccc;
+            padding: 60px 0 20px 0;
+            border-top: 4px solid var(--accent-gold);
+        }
+        .footer-title {
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR (TIDAK DIUBAH) -->
+    <nav class="navbar navbar-expand-lg fixed-top shadow py-3">
+        <div class="container-fluid ps-lg-4">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="Pict/Logo ZooThera.png" alt="Logo" width="60" class="me-2">
+                <span class="fw-bold text-white tracking-wider d-none d-sm-inline" style="letter-spacing: 3px;">ABOUT ZOOTHERA</span>
+            </a>
+            <button class="navbar-toggler border-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto pe-lg-4">
+                    <li class="nav-item"><a class="nav-link px-3" href="index.html">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="#latar-belakang">LATAR BELAKANG</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="#visi-misi">VISI & MISI</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HEADER (ABOUT US) (TIDAK DIUBAH) -->
+    <header class="hero">
+        <div class="container text-center">
+            <h1 class="display-3 fw-bold text-white mb-3" style="letter-spacing: 2px;">ABOUT US</h1>
+            <p class="fs-4 text-gold fw-light">Compassion in Every Action, Dignity for Every Life.</p>
+        </div>
+    </header>
+
+    <!-- LATAR BELAKANG (TIDAK DIUBAH) -->
+    <section id="latar-belakang" class="py-5 bg-charcoal text-white">
+        <div class="container py-5">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-9">
+                    <h2 class="display-6 fw-bold mb-3">LATAR BELAKANG</h2>
+                    <div class="mx-auto mb-4" style="height: 3px; width: 60px; background-color: var(--accent-gold);"></div>
+                    <p class="fs-5 lh-lg opacity-75" style="text-align: justify; text-align-last: center;">
+                        ZooThera Global Group didirikan sebagai respons terhadap meningkatnya ancaman terhadap kehidupan fauna dan kerusakan ekosistem akibat aktivitas manusia. Berangkat dari kebutuhan akan solusi yang lebih terintegrasi, ZooThera menggabungkan konservasi, teknologi, dan edukasi untuk menciptakan sistem perlindungan hewan yang berkelanjutan. Kami hadir untuk membangun harmoni antara manusia dan alam, serta memastikan masa depan di mana fauna dapat hidup dengan aman, sehat, dan bermartabat.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VISI & MISI (TIDAK DIUBAH) -->
+    <section id="visi-misi" class="py-5" style="background-color: var(--golden-cream);">
+        <div class="container py-5">
+            <div class="row justify-content-center text-center mb-5">
+                <div class="col-lg-10">
+                    <h6 class="text-gold fw-bold text-uppercase mb-3">Tujuan Utama Kami</h6>
+                    <h2 class="display-5 fw-bold mb-4">VISI</h2>
+                    <p class="fs-4 fst-italic lh-base">"Menjadi katalisator utama dunia dalam menciptakan harmoni abadi antara peradaban manusia dan kerajaan hewan melalui inovasi berkelanjutan, perlindungan habitat, dan edukasi yang menginspirasi generasi mendatang."</p>
+                </div>
+            </div>
+
+            <div class="row g-4 mt-4">
+                <div class="col-12 text-center mb-2">
+                    <h2 class="display-6 fw-bold">MISI STRATEGIS</h2>
+                </div>
+                <div class="col-md-6">
+                    <div class="misi-card bg-white p-4 h-100 shadow-sm">
+                        <h4 class="h5 fw-bold"><i class="fas fa-microchip text-gold me-2"></i> Konservasi Tanpa Batas</h4>
+                        <p class="text-muted mb-0">Memimpin upaya penyelamatan spesies terancam punah dengan mengintegrasikan teknologi mutakhir dan penelitian ilmiah berbasis data.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="misi-card bg-white p-4 h-100 shadow-sm">
+                        <h4 class="h5 fw-bold"><i class="fas fa-medal text-gold me-2"></i> Standar Kesejahteraan Global</h4>
+                        <p class="text-muted mb-0">Menetapkan standar emas internasional dalam perawatan, nutrisi, dan perlindungan hewan di seluruh ekosistem.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="misi-card bg-white p-4 h-100 shadow-sm">
+                        <h4 class="h5 fw-bold"><i class="fas fa-leaf text-gold me-2"></i> Restorasi Habitat Strategis</h4>
+                        <p class="text-muted mb-0">Bertindak sebagai penjaga ekosistem dengan merehabilitasi habitat alami yang rusak demi keanekaragaman hayati.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="misi-card bg-white p-4 h-100 shadow-sm">
+                        <h4 class="h5 fw-bold"><i class="fas fa-graduation-cap text-gold me-2"></i> Pemberdayaan Edukasi</h4>
+                        <p class="text-muted mb-0">Membangun kesadaran kolektif global melalui platform edukasi interaktif yang menghubungkan empati manusia.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER BARU (DIUBAH MENJADI SEPERTI COMPANY NETWORK) -->
+    <footer class="footer-black">
+        <div class="container">
+            <div class="row mb-4 justify-content-center">
+                
+                <div class="col-lg-3 col-md-5 mb-4">
+                    <h4 class="text-white mb-3" style="font-family: 'Montserrat', sans-serif;">ZOOTHERA GROUP</h4>
+                    <p class="small lh-lg">Compassion in Every Action, Dignity for Every Life. Menjaga keseimbangan ekosistem global dari pusat kami di Indonesia.</p>
+                    <div class="d-flex mt-3">
+                        <a href="#" class="text-white me-3 fs-5"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white me-3 fs-5"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="fas fa-globe"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-7 mb-4 text-center px-lg-4">
+                    <h5 class="footer-title">Cakupan Global</h5>
+                    <div class="row gy-4 justify-content-center mx-auto" style="max-width: 280px;">
+                        <div class="col-6">
+                            <h3 class="text-gold fw-bold mb-0">120+</h3>
+                            <p class="small text-secondary mb-0">Negara Operasi</p>
+                        </div>
+                        <div class="col-6">
+                            <h3 class="text-gold fw-bold mb-0">500+</h3>
+                            <p class="small text-secondary mb-0">Spesies Terjaga</p>
+                        </div>
+                        <div class="col-6">
+                            <h3 class="text-gold fw-bold mb-0">24/7</h3>
+                            <p class="small text-secondary mb-0">Live Tracking</p>
+                        </div>
+                        <div class="col-6">
+                            <h3 class="text-gold fw-bold mb-0">1M+</h3>
+                            <p class="small text-secondary mb-0">Hektar Konservasi</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-12 mb-4 text-lg-end text-md-center">
+                    <h5 class="footer-title">Kantor Pusat</h5>
+                    <p class="small mb-2">Banten, Indonesia <i class="fas fa-map-marker-alt text-gold me-2"></i></p>
+                    <p class="small mb-2">South East Asia Hub <i class="fas fa-globe-americas text-gold me-2"></i></p>
+                    <p class="small mb-0">zootheraglobalgroup@gmail.com <i class="fas fa-envelope text-gold me-2"></i></p>
+                </div>
+
+            </div>
+            
+            <div class="row border-top border-secondary pt-3 mt-3">
+                <div class="col-12 text-center">
+                    <p class="small mb-0 text-secondary">&copy; 2026 Zoothera Global Group. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

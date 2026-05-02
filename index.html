@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoothera</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --putih: #ffffff;
+            --charcoal: #1a1a1a;
+            --gold: #c5a059;
+            --gold-krim: #fff8dd;
+            --ijo: #13331f;
+            --ijoat: #122812;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        #preloader {
+            position: fixed;
+            inset: 0;
+            background: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            will-change: transform, opacity;
+            transition: transform 0.8s ease, opacity 0.6s ease;
+        }
+
+        /* konten tengah */
+        .loader-content {
+            text-align: center;
+            color: #fff;
+        }
+
+        /* tulisan */
+        .loader-content h1 {
+            font-size: 42px;
+            letter-spacing: 6px;
+            margin-bottom: 15px;
+            animation: fadeZoom 1.5s ease;
+        }
+
+        /* garis animasi */
+        .loader-line {
+            width: 300px;
+            height: 3px;
+            background: linear-gradient(to right, #fff8dd, #fff8dd);
+            margin: 15px auto 0;
+
+            transform: scaleX(0);
+            transform-origin: left;
+
+            animation: lineSmooth 1.5s ease forwards;
+        }
+
+        /* animasi teks */
+        @keyframes fadeZoom {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* animasi garis */
+        @keyframes lineSmooth {
+            to {
+                transform: scaleX(1);
+            }
+        }
+
+        /* saat hilang */
+        #preloader.hide {
+            transform: translateY(100%);
+            opacity: 0;
+            transition: transform 1s cubic-bezier(0.77, 0, 0.18, 1), opacity 0.6s ease;
+        }
+
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            background: transparent;
+            overflow: visible;
+        }
+
+        body.loaded .hero {
+            opacity: 1;
+        }
+
+        /* GAMBAR BACKGROUND */
+        .hero-bg {
+            position: fixed;
+            inset: 0;
+            background: url("Pict/beautiful-shot-forest-with-tall-trees-bright-sun-rays-shining.jpg") center/cover no-repeat;
+            filter: brightness(0.8);
+            z-index: 0;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+
+            background: linear-gradient(
+                to bottom,
+                #1a1a1a 0%,
+                rgba(26,26,26,0.9) 15%,
+                rgba(26,26,26,0.4) 35%,
+                rgba(26,26,26,0) 50%,
+                rgba(26,26,26,0.4) 65%,
+                rgba(26,26,26,0.85) 85%,
+                #1a1a1a 100%
+            );
+
+    z-index: 1;
+}
+
+        .navbar {
+            position: relative;
+            background: transparent;
+            z-index: 20;
+        }
+
+        .navbar-brand img {
+            width: 85px;
+            height: auto;
+            margin-left: 15px;
+        }
+
+        .brand-name {
+            color: var(--putih);
+            font-size: 35px;
+            font-weight: 700;
+            margin-left: 10px;
+        }
+
+        .nav-item {
+            margin-right: 20px;
+        }
+
+        .nav-link {
+            color: var(--putih);
+            font-size: 18px;
+            font-weight: 600;
+            margin-left: 15px;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--gold);
+        }
+
+        .mega-parent {
+            position: static;
+        }
+
+        /* 🔥 MEGA MENU (FULL WIDTH & STABIL) */
+        .mega-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+
+            background: var(--charcoal);
+            padding: 40px 0;
+
+            color: var(--gold-krim);
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.25s ease;
+
+            z-index: 999;
+        }
+
+        /* isi tetap rapi */
+        .mega-menu .container {
+            max-width: 1200px;
+        }
+
+        /* 🔥 TRIGGER UTAMA */
+        .mega-parent:hover .mega-menu,
+        .mega-menu:hover {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* styling isi */
+        .mega-menu h6 {
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .mega-menu a {
+            display: block;
+            text-decoration: none;
+            color: var(--gold-krim);
+            margin-bottom: 8px;
+        }
+
+        .mega-menu a:hover {
+            color: var(--gold);
+        }
+
+        .hero-title {
+            position: absolute;
+            top: 250px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            
+            text-align: center;
+            z-index: 2;
+            color: var(--putih);
+            text-shadow: 2px 5px 5px rgba(0, 0, 0, 1);
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .hero-title h1 {
+            font-size: 100px;
+            font-weight: bold;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-title h1::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -5px;
+            width: 120%;
+            height: 4px;
+            background: var(--gold-krim);
+        }
+
+        .hero-title p {
+            font-size: 25px;
+            font-weight: 500;
+        }
+
+        .hero-content {
+            position:absolute;
+            bottom: 50px;
+            left: 90px;
+            max-width: 1400px;
+            width: 90%;
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            text-shadow: 2px 5px 5px rgba(0, 0, 0, 1);
+            z-index: 2;
+        } 
+        
+        .left-content {
+            flex: 1.5;
+            transform: translateY(32px);
+        }
+
+        .left-content h5 {
+            position: relative;
+            bottom: 7px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: var(--gold-krim);
+        }
+
+        .left-content h5::after {
+            content: "";
+            position: absolute;
+            left: 7.5%;
+            transform: translateX(-50%);
+            bottom: -8px;
+            width: 15%;
+            height: 4px;
+            background: var(--gold-krim);
+        }
+
+        .left-content p {
+            color: var(--putih);
+            font-size: 18px;
+            font-weight: 530;
+            line-height: 1.7;
+        }
+
+        .right-content {
+            flex: 1;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .right-content::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--gold-krim);
+        }
+
+        .right-content h5 {
+            position: relative;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: var(--gold-krim);
+        }
+
+        .right-content p {
+            color: var(--putih);
+            font-size: 15px;
+            font-weight: 510;
+            line-height: 1.7;
+        }
+
+        .next-section {
+            background: var(--charcoal);
+            min-height: 80vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .fireflies {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .firefly {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #fff8dd;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #fff8dd, 0 0 20px #c5a059;
+
+            opacity: 0;
+            animation: blink 3s infinite ease-in-out;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        .hero-freedom {
+            position: relative;
+            padding: 10px 15px;
+            max-width: 1400px;
+            width: 90%;
+            display: grid;
+            grid-template-columns: 1.7fr 1fr 1fr;
+            gap: 25px;
+            align-items: start;
+            margin: auto;
+            z-index: 2;
+        }
+
+        @media (max-width: 992px) {
+            .hero-freedom {
+                grid-template-columns: 1fr; /* jadi 1 kolom di HP */
+            }
+        }
+
+        .left-freedom {
+            flex: 1;
+            transform: translateY(80px);
+            text-shadow: 2px 5px 5px rgba(0, 0, 0, 1);
+        }
+
+        .left-freedom h1{
+            position: relative;
+            bottom: 7px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: var(--putih);
+        }
+
+        .left-freedom p {
+            color: var(--putih);
+            font-size: 18px;
+            font-weight: 530;
+            line-height: 1.7;
+        }
+
+        .mid-freedom {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            flex: 1;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .mid-freedom::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--gold-krim);
+        }
+
+        .right-freedom {
+            transform: translateY(30px);
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            position: relative;
+        }
+
+        .mid-freedom .info-wrapper:nth-child(1) {
+            transform: translateX(10px)
+        }
+
+        .mid-freedom .info-wrapper:nth-child(2) {
+            transform: translateX(40px)
+        }
+
+        .mid-freedom .info-wrapper:nth-child(3) {
+            transform: translateX(70px)
+        }
+
+        .right-freedom .info-wrapper:nth-child(1) {
+            transform: translateX(15px);
+        }
+
+        .right-freedom .info-wrapper:nth-child(2) {
+            transform: translateX(45px);
+        }
+
+        .info-wrapper {
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        /* tombol ikon */
+        .info-btn {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .info-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* textbox */
+        .info-box {
+            position: absolute;
+            left: 110px;
+            top: 0;
+            pointer-events: none;
+
+            background: rgba(255, 248, 221, 0.8);
+            backdrop-filter: blur(8px);
+            box-shadow: 0px 5px 20px var(--gold);
+
+            padding: 20px;
+            border-radius: 15px;
+            color: var(--charcoal);
+            font-weight: 600;
+            width: 260px;
+
+            opacity: 0;
+            transform: translateY(10px);
+            transition: 0.3s;
+            z-index: 100;
+        }
+        
+        .info-box h6{
+            font-weight: bold;
+        }
+
+        /* saat aktif */
+        .info-box.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .sec-section {
+            background: var(--gold-krim);
+            min-height: 120vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .hero-program {
+            max-width: 1800px;
+            width: 100%;
+        }
+
+        .top-program {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .top-program h1{
+            font-size: 30;
+            font-weight: bolder;
+            color: var(--ijo);
+            line-height: 1.2;
+        }
+
+        .top-program p{
+            margin-top: 20px;
+            max-width: 850px;
+            font-size: 16px;
+            color: var(--ijo);
+        }
+
+        .bottom-program {
+            margin-top: 50px;
+        }
+
+
+        .solution-card {
+            background: var(--charcoal);
+            border-radius: 12px;
+            overflow: hidden;
+            height: 100%;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(26, 26, 26, 0.9); /* Shadow dengan rona emas */
+        }
+
+        .solution-card img { 
+            height: 180px; 
+            object-fit: cover; 
+            width: 100%; 
+        }
+        
+        .card-content { 
+            padding: 25px; 
+            flex-grow: 1; 
+            display: flex; 
+            flex-direction: column; 
+        }
+
+        .card-content h5 { 
+            font-size: 1rem; 
+            font-weight: bold;
+            color: var(--gold); 
+            margin-bottom: 12px; 
+            height: 3rem; 
+            display: flex; align-items: center; 
+        }
+
+        .card-content p { 
+            font-size: 0.85rem; 
+            color: var(--gold-krim); 
+            margin-bottom: 20px; 
+        }
+
+        .thir-section {
+            background: var(--ijoat);
+            min-height: 160vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .hero-animal {
+            max-width: 1800px;
+            width: 100%;
+        }
+
+        .top-animal {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 90px;
+        }
+
+        .top-animal h1{
+            color: var(--gold-krim);
+            font-weight: bolder;
+        }
+
+        .top-animal p{
+            color: var(--gold-krim)
+        }
+
+        .solution-card-animal {
+            background: var(--gold-krim);
+            border-radius: 12px;
+            overflow: hidden;
+            height: 100%;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .solution-card-animal:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(255, 248, 221, 0.6 ); /* Shadow dengan rona emas */
+        }
+
+        .solution-card-animal img { 
+            height: 180px; 
+            object-fit: cover; 
+            width: 100%; 
+        }
+        
+        .card-content-animal { 
+            padding: 18px; 
+            flex-grow: 1; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: flex-start;
+        }
+
+        .card-content-animal h5 { 
+            font-size: 1rem; 
+            font-weight: bold;
+            color: var(--charcoal);  
+            display: flex; 
+            align-items: center; 
+            margin-bottom: 2px;
+        }
+
+        .card-content-animal p { 
+            margin-top: 0;
+            font-size: 0.85rem; 
+            color: var(--ijo); 
+            margin-bottom: 0px; 
+        }
+
+        .footer-black {
+            position: relative;
+            background-color: var(--charcoal);
+            color: #cccccc;
+            padding: 60px 0 20px 0;
+            border-top: 4px solid var(--gold-krim);
+            z-index: 3;
+        }
+
+        .text-gold {
+            color: var(--gold);
+        }
+
+        
+
+        
+    </style>
+</head>
+<body>
+    <div id="preloader">
+        <div class="loader-content">
+            <h1>ZOOTHERA</h1>
+            <div class="loader-line"></div>
+        </div>
+    </div>
+    <div class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-nav">
+            <nav class="navbar navbar-expand-lg fixed-top">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="Zoothera.html"><img src="Pict/Logo ZooThera.png"></a>
+                    <div class="brand-name">ZOOTHERA</div>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="AboutZooThera.html">ABOUT</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Structure_Zoothera.html">STRUCTURE</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="zootheraacademyglobal.html">PROGRAM</a>
+                        </li>
+
+                        <li class="nav-item mega-parent">
+                            <a class="nav-link" href="#">IMPACT REPORT</a>
+
+                            <div class="mega-menu">
+                                <div class="container">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <h6>Zoothera Impact Report</h6>
+                                            <a class="mega-link" href="Conservation Map.html">Conservation Map</a>
+                                            <a class="mega-link" href="humanely.html">Humanely Raised Company</a>
+                                            <a class="mega-link" href="CompanyMap.html">Company Operational Map</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <div class="hero-title">
+            <h1>ZOOTHERA</h1>
+            <p><i>"Compassion in Every Action, Dignity for Every Life"</i></p>
+        </div>
+
+        <section id="definition">
+            <div class="hero-content">
+                <div class="left-content">
+                    <h5>ZOOTHERA GLOBAL GROUP</h5>
+                    <p>Zoothera Global Group merupakan perusahaan kelas dunia yang berfokus pada konservasi, 
+                        kesejahteraan fauna, serta pengembangan solusi berkelanjutan untuk mendukung keseimbangan 
+                        antara manusia dan alam.</p>
+                </div>
+
+                <div class="right-content">
+                    <h5>GOALS</h5>
+                    <p>
+                        • Conservation Without Borders<br>
+                        • Global Welfare Standards<br>
+                        • Habitat Restoration<br>
+                        • Education & Awareness
+                    </p>
+                    <h5>OUR IMPACT</h5>
+                    <p>
+                        • 120+ Countries Reached<br>• 50K+ Animals Protected<br>• 200+ Conservation Programs
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section class="next-section" id="five">
+        <div class="fireflies"></div>
+        <div class="hero-freedom">
+            <div class="left-freedom">
+                <h1>The Five Freedoms for Animal Welfare</h1>
+                <p>Standar internasional untuk perlakuan manusiawi terhadap hewan.
+                    Prinsip ini digunakan untuk menjamin kesehatan fisik dan mental hewan.
+                </p>
+            </div>
+            <div class="mid-freedom">
+                <!-- item 1 -->
+                <div class="info-wrapper">
+                    <button class="info-btn">
+                        <img src="Pict/Freedom From Hunger and Thirst.png">
+                    </button>
+                    <div class="info-box">
+                        <h6>Hunger & Thirst</h6>
+                        <p>By ready access to fresh water and a diet to maintain full health and vigour</p>
+                    </div>
+                </div>
+
+                <!-- item 2 -->
+                <div class="info-wrapper">
+                    <button class="info-btn">
+                        <img src="Pict/Freedom From Discomfort.png">
+                    </button>
+                    <div class="info-box">
+                        <h6>Discomfort</h6>
+                        <p>By providing an appropriate environment, including shelter and a comfortable resting area</p>
+                    </div>
+                </div>
+
+                <!-- item 3 -->
+                <div class="info-wrapper">
+                    <button class="info-btn">
+                        <img src="Pict/Freedom From Pain Injury or Disease.png">
+                    </button>
+                    <div class="info-box">
+                        <h6>Pain Injury or Disease</h6>
+                        <p>By prevention and rapid diagnosis and treatment</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KOLOM 3 -->
+            <div class="right-freedom">
+                <!-- item 4 -->
+                <div class="info-wrapper">
+                    <button class="info-btn">
+                        <img src="Pict/Freedom to Express Normal Behaviour.png">
+                    </button>
+                    <div class="info-box">
+                        <h6>Express Normal Behaviour</h6>
+                        <p>By providing sufficient space, proper facilities, and company of the animal’s own kind</p>
+                    </div>
+                </div>
+
+                <!-- item 5 -->
+                <div class="info-wrapper">
+                    <button class="info-btn">
+                        <img src="Pict/Freedom From Fear and Distress.png">
+                    </button>
+                    <div class="info-box">
+                        <h6>Fear & Distress</h6>
+                        <p>By ensuring conditions and treatment which avoid mental suffering</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sec-section" id="Program">
+        <div class="hero-program">
+            <div class="top-program container text-center">
+                <h1>ZOOTHERA PROGRAM</h1>
+                <p>Zoothera Program merupakan rangkaian inisiatif strategis yang dirancang untuk menciptakan dampak nyata dalam konservasi dan kesejahteraan hewan secara global. Program ini mengintegrasikan pendidikan, aksi lapangan, serta kolaborasi dengan berbagai sektor untuk membangun hubungan yang lebih harmonis antara manusia dan alam.</p>
+            </div>
+            <div class="bottom-program">
+                <div class="container">
+                    <div class="row g-4 justify-content-center">
+                        <div class="col-xl-3 col-md-6">
+                            <div class="solution-card">
+                                <img src="Pict/premium_photo-1683887033886-6c45d4b659f3.avif" alt="Leadership"/>
+                                <div class="card-content">
+                                    <h5>Zoothera Global Academy</h5>
+                                    <p>Ekosistem pendidikan global yang dirancang untuk menciptakan perubahan nyata dalam hubungan antara manusia dan hewan</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="solution-card">
+                                <img src="Pict/rescue.avif" alt="Platform"/>
+                                <div class="card-content">
+                                    <h5>Rescue & Rehabilitation</h5>
+                                    <p>Sistem terpadu yang dirancang untuk menyelamatkan, memulihkan, dan mengembalikan hewan ke habitat alaminya secara optimal. Program ini tidak hanya berfokus pada penyembuhan fisik, tetapi juga pemulihan psikologis serta kesiapan adaptasi di alam liar</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="solution-card">
+                                <img src="Pict/consult.avif" alt="Youth"/>
+                                <div class="card-content">
+                                    <h5>Corporate Consulting</h5>
+                                    <p>Layanan strategis yang dirancang untuk membantu perusahaan besar bertransformasi menjadi entitas bisnis yang lebih etis, berkelanjutan, dan ramah terhadap hewan</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="thir-section" id="animal">
+        <div class="hero-animal">
+            <div class="top-animal container text center">
+                <h1>ENDANGERED ANIMAL SPECIES</h1>
+                <p>"Hewan yang menghadapi resiko kepunahan sangat tinggi di alam liar"</p>
+            </div>
+            <div class="bot-animal">
+                <div class="container">
+                    <div class="row g-4 justify-content-center">
+                        <div class="col-xl-3 col-md-6">
+                            <div class="solution-card-animal">
+                                <img src="Pict/golden-lion-tamarin.jpg" alt="Leadership"/>
+                                <div class="card-content-animal">
+                                    <h5>Golden Lion Tamarin</h5>
+                                    <p>Brazil</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="solution-card-animal">
+                                <img src="Pict/tasmanian-devil-2.jpg" alt="Platform"/>
+                                <div class="card-content-animal">
+                                    <h5>Tasmanian Devil</h5>
+                                    <p>Australia</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="solution-card-animal">
+                                <img src="Pict/komodo.jpg" alt="Youth"/>
+                                <div class="card-content-animal">
+                                    <h5>Komodo</h5>
+                                    <p>Indonesia</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="solution-card-animal">
+                                <img src="Pict/portrait-cute-red-panda.jpg" alt="Youth"/>
+                                <div class="card-content-animal">
+                                    <h5>Red Panda</h5>
+                                    <p>China</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="solution-card-animal">
+                                <img src="Pict/Weirdest-Animal_-Okapi.jpg" alt="Youth"/>
+                                <div class="card-content-animal">
+                                    <h5>Okapi</h5>
+                                    <p>Republic of Congo</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="solution-card-animal">
+                                <img src="Pict/white_tiger3.jpg" alt="Youth"/>
+                                <div class="card-content-animal">
+                                    <h5>White Tiger</h5>
+                                    <p>India</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="solution-card-animal">
+                                <img src="Pict/sea-otter-on-back.jpg" alt="Youth"/>
+                                <div class="card-content-animal">
+                                    <h5>Sea Otter</h5>
+                                    <p>Russia</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="solution-card-animal">
+                                <img src="Pict/Numbat.jpg" alt="Youth"/>
+                                <div class="card-content-animal">
+                                    <h5>Numbat</h5>
+                                    <p>Australia</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="solution-card-animal">
+                                <img src="Pict/Pink Dolphin.jpg" alt="Youth"/>
+                                <div class="card-content-animal">
+                                    <h5>Pink Dolphin</h5>
+                                    <p>Amazon River</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="solution-card-animal">
+                                <img src="Pict/bonobo-6.jpg" alt="Youth"/>
+                                <div class="card-content-animal">
+                                    <h5>Bonobo</h5>
+                                    <p>Republic of Congo</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="solution-card-animal">
+                                <img src="Pict/asian-elephant-2.jpg" alt="Youth"/>
+                                <div class="card-content-animal">
+                                    <h5>Asian Elephant</h5>
+                                    <p>Asia</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="solution-card-animal">
+                                <img src="Pict/Mountain-Gorilla-Gorilla-beringei-beringei-in-forest.jpg" alt="Youth"/>
+                                <div class="card-content-animal">
+                                    <h5>Mountain Gorilla</h5>
+                                    <p>Republic of Congo</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-black">
+    <div class="container">
+        <div class="row mb-4 justify-content-center">
+            
+            <div class="col-lg-3 col-md-5 mb-4">
+                <h4 class="text-white mb-3 fw-bold" style="font-family: 'Montserrat', sans-serif;">ZOOTHERA GROUP</h4>
+                <p class="small lh-lg">Compassion in Every Action, Dignity for Every Life. Menjaga keseimbangan ekosistem global dari pusat kami di Indonesia.</p>
+                <div class="d-flex mt-3">
+                    <a href="#" class="text-white me-3 fs-5"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white me-3 fs-5"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="text-white fs-5"><i class="fas fa-globe"></i></a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-7 mb-4 text-center px-lg-4">
+                <h5 class="footer-title fw-bold text-white">CAKUPAN GLOBAL</h5>
+                
+                <div class="row gy-4 justify-content-center mx-auto" style="max-width: 280px;">
+                    <div class="col-6">
+                        <h3 class="text-gold fw-bold mb-0">120+</h3>
+                        <p class="small text-secondary mb-0">Negara Operasi</p>
+                    </div>
+                    <div class="col-6">
+                        <h3 class="text-gold fw-bold mb-0">500+</h3>
+                        <p class="small text-secondary mb-0">Spesies Terjaga</p>
+                    </div>
+                    <div class="col-6">
+                        <h3 class="text-gold fw-bold mb-0">24/7</h3>
+                        <p class="small text-secondary mb-0">Live Tracking</p>
+                    </div>
+                    <div class="col-6">
+                        <h3 class="text-gold fw-bold mb-0">1M+</h3>
+                        <p class="small text-secondary mb-0">Hektar Konservasi</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-12 mb-4 text-lg-end text-md-center">
+                <h5 class="footer-title fw-bold text-white">KANTOR PUSAT</h5>
+                <p class="small mb-2">Banten, Indonesia <i class="fas fa-map-marker-alt text-gold me-2"></i></p>
+                <p class="small mb-2">South East Asia Hub <i class="fas fa-globe-americas text-gold me-2"></i></p>
+                <p class="small mb-0">zootheraglobalgroup@gmail.com <i class="fas fa-envelope text-gold me-2"></i></p>
+            </div>
+
+        </div>
+        
+        <div class="row border-top border-secondary pt-3 mt-3">
+            <div class="col-12 text-center">
+                <p class="small mb-0 text-secondary">&copy; 2026 Zoothera Global Group. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        window.addEventListener("load", () => {
+            const loader = document.getElementById("preloader");
+
+            setTimeout(() => {
+                loader.classList.add("hide");
+                document.body.classList.add("loaded");
+            }, 2000);
+        });
+
+        const wrappers = document.querySelectorAll(".info-wrapper");
+
+        wrappers.forEach(wrapper => {
+            const btn = wrapper.querySelector(".info-btn");
+            const box = wrapper.querySelector(".info-box");
+
+            btn.addEventListener("click", () => {
+
+                // tutup semua box dulu
+                document.querySelectorAll(".info-box").forEach(b => {
+                    if (b !== box) b.classList.remove("active");
+                });
+
+                // toggle box yang diklik
+                box.classList.toggle("active");
+            });
+        });
+
+        const container = document.querySelector(".fireflies");
+
+        for (let i = 0; i < 25; i++) {
+            const firefly = document.createElement("div");
+            firefly.classList.add("firefly");
+
+            // posisi random
+            firefly.style.top = Math.random() * 100 + "%";
+            firefly.style.left = Math.random() * 100 + "%";
+
+            // ukuran random
+            const size = Math.random() * 4 + 3;
+            firefly.style.width = size + "px";
+            firefly.style.height = size + "px";
+
+            // delay random biar tidak barengan
+            firefly.style.animationDelay = Math.random() * 5 + "s";
+
+            container.appendChild(firefly);
+        }
+
+    </script>
+
+</body>
+</html>

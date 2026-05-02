@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Conservation Map - Zoothera</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <style>
+        :root {
+            --golden-cream: #fff8dd;
+            --dark-charcoal: #1a1a1a;
+            --accent-gold: #c5a059;
+            --bg-gray: #f4f4f4;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-gray);
+            color: var(--dark-charcoal);
+            overflow-x: hidden;
+        }
+
+        /* --- Navbar --- */
+        .navbar { background-color: rgba(26, 26, 26, 0.98) !important; }
+        .nav-link { color: var(--golden-cream) !important; transition: 0.3s; font-weight: 600; font-size: 0.85rem; letter-spacing: 1px; }
+        .nav-link:hover { color: var(--accent-gold) !important; }
+        .text-gold { color: var(--accent-gold) !important; }
+
+        /* --- Header Map --- */
+        .map-header {
+            background-color: var(--dark-charcoal);
+            padding: 120px 0 60px 0;
+            color: var(--golden-cream);
+            text-align: center;
+        }
+
+        /* --- Layout Container Dashboard --- */
+        .interactive-section {
+            padding: 60px 0 100px 0;
+            background-color: var(--bg-gray);
+        }
+
+        .dashboard-container {
+            display: flex;
+            background: #ffffff;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            height: 750px; 
+            position: relative;
+        }
+
+        /* Area Map (Kiri) */
+        .map-side {
+            flex: 2;
+            position: relative;
+            border-right: 1px solid #eee;
+        }
+
+        #conservationMap {
+            height: 100%;
+            width: 100%;
+            z-index: 1;
+        }
+
+        /* Styling Popup Leaflet */
+        .leaflet-popup-content-wrapper { border-radius: 15px; padding: 0; overflow: hidden; }
+        .leaflet-popup-content { margin: 0; width: 250px !important; }
+        .popup-img { width: 100%; height: 130px; object-fit: cover; }
+        .popup-body { padding: 15px; }
+
+        /* Area Sidebar (Kanan) */
+        .info-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            border-right: 10px solid var(--accent-gold); 
+        }
+
+        .sidebar-header {
+            padding: 25px;
+            background: #fff;
+            color: var(--dark-charcoal);
+            font-weight: 800;
+            border-bottom: 1px solid #eee;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sidebar-scroll {
+            padding: 20px;
+            overflow-y: auto;
+            flex-grow: 1;
+            background-color: #ffffff;
+        }
+
+        /* --- Styling Card (Gambar Rata Tengah Vertikal) --- */
+        .location-card {
+            border: 1px solid #e0e0e0;
+            border-left: 10px solid var(--accent-gold); /* AWALNYA EMAS */
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #fff;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center; 
+            gap: 15px;
+        }
+
+        /* --- BAGIAN CSS EFEK HOVER YANG DIUBAH --- */
+        .location-card:hover {
+            transform: translateX(8px); 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+            border-left: 10px solid var(--dark-charcoal); /* BERUBAH HITAM SAAT DI-HOVER */
+            background-color: var(--golden-cream) !important; 
+        }
+        /* ------------------------------------------- */
+
+        .card-img-container {
+            flex-shrink: 0;
+            width: 85px;
+            height: 85px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 5px; 
+            margin-bottom: 5px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .card-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-content { flex-grow: 1; }
+        .location-card h6 { font-weight: 800; font-size: 1.1rem; margin-bottom: 5px; color: var(--dark-charcoal); }
+        .location-card p { font-size: 0.85rem; color: #666; line-height: 1.4; margin-bottom: 10px; }
+
+        .animal-tag {
+            display: inline-flex;
+            align-items: center;
+            background: var(--dark-charcoal);
+            color: #fff;
+            padding: 5px 12px;
+            border-radius: 25px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 5px;
+            margin-top: 5px;
+        }
+        .animal-tag i { margin-right: 5px; font-size: 0.7rem; }
+
+        /* --- Footer --- */
+        .footer-black {
+            background-color: #0d0d0a;
+            color: #cccccc;
+            padding: 60px 0 20px 0;
+            border-top: 4px solid var(--accent-gold);
+        }
+        .footer-title {
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Responsif Tablet & HP */
+        @media (max-width: 992px) {
+            .dashboard-container { flex-direction: column; height: auto; }
+            .map-side { height: 450px; border-right: none; border-bottom: 1px solid #eee; }
+            .sidebar-scroll { height: 500px; }
+            .info-side { border-right: none; border-bottom: 10px solid var(--accent-gold); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top shadow py-3">
+        <div class="container-fluid ps-lg-4">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="Pict/Logo ZooThera.png" alt="Logo" width="60" class="me-2">
+                <span class="fw-bold text-white tracking-wider d-none d-sm-inline" style="letter-spacing: 3px;">ZOOTHERA GLOBAL</span>
+            </a>
+            <button class="navbar-toggler border-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto pe-lg-4">
+                    <li class="nav-item"><a class="nav-link px-3" href="index.html">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="AboutZooThera.html">ABOUT US</a></li>
+                    <li class="nav-item"><a class="nav-link px-3 text-gold" href="#">MAPS</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="map-header">
+        <div class="container">
+            <h6 class="text-gold fw-bold mb-2" style="letter-spacing: 2px;"><i class="fas fa-satellite me-2"></i> HD SATELLITE TRACKING</h6>
+            <h1 class="display-5 fw-bold mb-3">Live Conservation Map</h1>
+            <p class="lead opacity-75 mx-auto" style="max-width: 700px; font-size: 1.1rem;">
+                Pantau area konservasi kami secara real-time. Pilih lokasi pada daftar di bawah untuk melihat detail flora & fauna yang kami lindungi.
+            </p>
+        </div>
+    </header>
+
+    <section class="interactive-section">
+        <div class="container">
+            <div class="dashboard-container">
+                
+                <div class="map-side">
+                    <div id="conservationMap"></div>
+                </div>
+
+                <div class="info-side">
+                    <div class="sidebar-header">
+                        <i class="fas fa-list-ul"></i> Fasilitas Kami
+                    </div>
+                    <div class="sidebar-scroll" id="sidebar-content">
+                        <!-- Cards akan masuk kesini -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-black">
+        <div class="container">
+            <div class="row mb-4 justify-content-center">
+                
+                <div class="col-lg-3 col-md-5 mb-4">
+                    <h4 class="text-white mb-3" style="font-family: 'Montserrat', sans-serif;">ZOOTHERA GROUP</h4>
+                    <p class="small lh-lg">Compassion in Every Action, Dignity for Every Life. Menjaga keseimbangan ekosistem global dari pusat kami di Indonesia.</p>
+                    <div class="d-flex mt-3">
+                        <a href="#" class="text-white me-3 fs-5"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white me-3 fs-5"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="fas fa-globe"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-7 mb-4 text-center px-lg-4">
+                    <h5 class="footer-title">Cakupan Global</h5>
+                    <div class="row gy-4 justify-content-center mx-auto" style="max-width: 280px;">
+                        <div class="col-6">
+                            <h3 class="text-gold fw-bold mb-0">120+</h3>
+                            <p class="small text-secondary mb-0">Negara Operasi</p>
+                        </div>
+                        <div class="col-6">
+                            <h3 class="text-gold fw-bold mb-0">500+</h3>
+                            <p class="small text-secondary mb-0">Spesies Terjaga</p>
+                        </div>
+                        <div class="col-6">
+                            <h3 class="text-gold fw-bold mb-0">24/7</h3>
+                            <p class="small text-secondary mb-0">Live Tracking</p>
+                        </div>
+                        <div class="col-6">
+                            <h3 class="text-gold fw-bold mb-0">1M+</h3>
+                            <p class="small text-secondary mb-0">Hektar Konservasi</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-12 mb-4 text-lg-end text-md-center">
+                    <h5 class="footer-title">Kantor Pusat</h5>
+                    <p class="small mb-2">Banten, Indonesia <i class="fas fa-map-marker-alt text-gold me-2"></i></p>
+                    <p class="small mb-2">South East Asia Hub <i class="fas fa-globe-americas text-gold me-2"></i></p>
+                    <p class="small mb-0">zootheraglobalgroup@gmail.com <i class="fas fa-envelope text-gold me-2"></i></p>
+                </div>
+
+            </div>
+            
+            <div class="row border-top border-secondary pt-3 mt-3">
+                <div class="col-12 text-center">
+                    <p class="small mb-0 text-secondary">&copy; 2026 Zoothera Global Group. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        // 1. Inisialisasi Peta
+        var map = L.map('conservationMap', {
+            center: [0.7893, 113.9213], 
+            zoom: 4,
+            zoomControl: false
+        });
+        L.control.zoom({ position: 'bottomright' }).addTo(map);
+
+        // 2. Layer Satelit HD
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri',
+            maxZoom: 17
+        }).addTo(map);
+
+        // 3. Ikon Marker Emas
+        var zootheraIcon = L.divIcon({
+            className: 'custom-div-icon',
+            html: "<div style='background-color:#c5a059; width:20px; height:20px; border-radius:50%; border:3px solid #fff; box-shadow: 0 0 15px rgba(0,0,0,0.3);'></div>",
+            iconSize: [20, 20],
+            iconAnchor: [10, 10]
+        });
+
+        // 4. Data Lokasi
+        var locations = [
+            {
+                id: 1,
+                name: "Way Kambas Sanctuary",
+                coords: [-5.0068, 105.7720],
+                desc: "Fasilitas pembiakan semi-alami untuk mamalia besar endemik Sumatera.",
+                animals: ["Badak Sumatera", "Gajah Sumatera", "Harimau"],
+                image: "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 2,
+                name: "Raja Ampat Marine Base",
+                coords: [-0.2300, 130.5167],
+                desc: "Pusat rehabilitasi terumbu karang dan stasiun medis satwa laut.",
+                animals: ["Manta Ray", "Penyu Belimbing", "Hiu Paus"],
+                image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 3,
+                name: "Borneo Orangutan Rehab",
+                coords: [1.2333, 114.1167],
+                desc: "Klinik rehabilitasi khusus primata dengan pengawasan ketat 24/7.",
+                animals: ["Orangutan", "Bekantan", "Burung Enggang"],
+                image: "https://www.theorangutanproject.org/static/media/uploads/adoption-facilities/iar1.jpg?w=600&q=80"
+            },
+            {
+                id: 4,
+                name: "Kenya Anti-Poaching Reserve",
+                coords: [-1.2921, 36.8219],
+                desc: "Zona aman yang dipantau dengan drone thermal Zoothera.",
+                animals: ["Gajah Afrika", "Badak Hitam", "Singa"],
+                image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 5,
+                name: "Sichuan Panda Base",
+                coords: [30.9856, 103.3270],
+                desc: "Riset nutrisi premium dan pembiakan Panda Raksasa.",
+                animals: ["Panda Raksasa", "Red Panda", "Macan Tutul Salju"],
+                image: "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            }
+        ];
+
+        var markers = {};
+        var sidebar = document.getElementById('sidebar-content');
+
+        // 5. Render Data ke Sidebar & Map
+        locations.forEach(function(loc) {
+            
+            // Marker & Popup
+            var popupContent = `
+                <div style="font-family:'Montserrat', sans-serif;">
+                    <img src="${loc.image}" class="popup-img" alt="${loc.name}">
+                    <div class="popup-body">
+                        <strong style="color: #1a1a1a; font-size: 1.1rem;">${loc.name}</strong><br>
+                        <small style="color: #666;">${loc.desc}</small>
+                    </div>
+                </div>
+            `;
+            
+            var marker = L.marker(loc.coords, {icon: zootheraIcon}).addTo(map);
+            marker.bindPopup(popupContent);
+            markers[loc.id] = marker;
+
+            // Animal Badges
+            var animalTags = loc.animals.map(animal => 
+                `<span class="animal-tag"><i class="fas fa-paw"></i> ${animal}</span>`
+            ).join('');
+
+            // Sidebar Card
+            var cardHTML = `
+                <div class="location-card" onclick="focusLocation(${loc.id}, ${loc.coords[0]}, ${loc.coords[1]})">
+                    <div class="card-img-container">
+                        <img src="${loc.image}" alt="${loc.name}">
+                    </div>
+                    <div class="card-content">
+                        <h6>${loc.name}</h6>
+                        <p>${loc.desc}</p>
+                        <div class="d-flex flex-wrap">${animalTags}</div>
+                    </div>
+                </div>
+            `;
+            sidebar.innerHTML += cardHTML;
+        });
+
+        // 6. Fungsi Fokus Lokasi
+        function focusLocation(id, lat, lng) {
+            map.flyTo([lat, lng], 10, { animate: true, duration: 1.5 });
+            setTimeout(() => { markers[id].openPopup(); }, 1500);
+        }
+    </script>
+</body>
+</html>

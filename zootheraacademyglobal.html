@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zoothera Global Academy</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    
+    <!-- Bootstrap CSS & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+    :root {
+        --golden-cream: #fff8dd;
+        --dark-charcoal: #1a1a1a;
+        --accent-gold: #c5a059;
+        --soft-white: #ffffff;
+        --text-dark: #2c2c2c;
+    }
+
+    body {
+        background-color: var(--golden-cream);
+        color: var(--text-dark);
+        font-family: 'Montserrat', sans-serif;
+        line-height: 1.7;
+    }
+
+    .title-font, h1, h2, h3, h4, h5, .navbar-brand {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+    }
+
+    /* NAVBAR */
+    .navbar {
+        background-color: rgba(26, 26, 26, 0.98) !important;
+        padding: 1.2rem 20px;
+    }
+
+    .navbar-brand { 
+        color: var(--golden-cream) !important; 
+        letter-spacing: 4px; 
+    }
+
+    .nav-link { 
+        color: var(--golden-cream) !important; 
+        font-size: 0.8rem; 
+        margin-left: 15px; 
+        transition: 0.3s; 
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+    .nav-link:hover { color: var(--accent-gold) !important; }
+
+    /* HERO SECTION */
+    .hero {
+        min-height: 85vh;
+        background: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.9)),
+                    url('Pict/akademi pelatihan.png') center/cover no-repeat;
+        display: flex;
+        align-items: center;
+        padding-top: 120px;
+    }
+
+    .hero-2 {
+        min-height: 85vh;
+        background: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.9)),
+                    url(Pict/rehab.jpg) center/cover no-repeat;
+        display: flex;
+        align-items: center;
+        padding-top: 120px;
+    }
+
+    .hero-3 {
+        min-height: 85vh;
+        background: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.9)),
+                    url('Pict/consulting.jpg') center/cover no-repeat;
+        display: flex;
+        align-items: center;
+        padding-top: 120px;
+    }
+
+    .hero h1 { font-size: clamp(2.2rem, 6vw, 4rem); color: var(--soft-white); line-height: 1.2; }
+    .hero .highlight { color: var(--accent-gold); }
+
+    .hero-2 h1 { font-size: clamp(2.2rem, 6vw, 4rem); color: var(--soft-white); line-height: 1.2; }
+    .hero-2 .highlight { color: var(--accent-gold); }
+
+    .hero-3 h1 { font-size: clamp(2.2rem, 6vw, 4rem); color: var(--soft-white); line-height: 1.2; }
+    .hero-3 .highlight { color: var(--accent-gold); }
+
+    /* SECTIONS */
+    .section-pad { padding: 90px 0; }
+    .bg-pure-white { background-color: var(--soft-white); }
+    .bg-golden-cream { background-color: var(--golden-cream); }
+    .bg-dark-charcoal { background-color: var(--dark-charcoal); }
+
+    /* CONTENT TEXT */
+    .content-text {
+        text-align: justify;
+        column-gap: 40px;
+    }
+
+    @media (min-width: 992px) {
+        .content-text { column-count: 2; }
+    }
+    
+    .content-text p {
+        margin-bottom: 20px;
+        break-inside: avoid;
+    }
+
+    /* 4-CARD PROGRAM SECTION */
+    .solution-card {
+        background: var(--soft-white);
+        border-radius: 12px;
+        overflow: hidden;
+        height: 100%;
+        transition: all 0.4s ease;
+        border: 1px solid rgba(0,0,0,0.05);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .solution-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 30px rgba(26, 26, 26, 0.4);
+    }
+
+    .solution-card img { 
+        height: 180px; 
+        object-fit: cover; 
+        width: 100%; 
+    }
+    
+    .card-content { 
+        padding: 25px; 
+        flex-grow: 1; 
+        display: flex; 
+        flex-direction: column; 
+    }
+
+    .card-content h5 { 
+        font-size: 1rem; 
+        color: var(--dark-charcoal); 
+        margin-bottom: 12px; 
+        height: 3rem; 
+        display: flex; 
+        align-items: center; 
+    }
+
+    .card-content p { font-size: 0.85rem; color: #555; margin-bottom: 20px; }
+
+    /* FOOTER */
+    .footer-black {
+        background-color: #0d0d0a;
+        color: #cccccc;
+        padding: 60px 0 20px 0;
+        border-top: 4px solid var(--accent-gold);
+    }
+
+    .text-gold { color: var(--accent-gold); }
+
+    /* UTILITY */
+    .letter-spacing-1 { letter-spacing: 1px; }
+
+</style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top shadow">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="Pict/Logo ZooThera.png" alt="Zoothera Logo" width="80px" height="auto" class="me-2">
+            <span class="d-none d-sm-inline">ZOOTHERA PROGRAMS</span>
+        </a>
+        <button class="navbar-toggler text-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
+                <li class="nav-item"><a class="nav-link" href="#academy">ZOOTHERA GLOBAL ACADEMY</a></li>
+                <li class="nav-item"><a class="nav-link" href="#rehab">RESCUE & REHABILITATION</a></li>
+                <li class="nav-item"><a class="nav-link" href="#consult">CORPORATE CONSULTING</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <!-- HERO ACADEMY SECTION -->
+    <header class="hero" id="academy">
+        <div class="container text-center">
+            <h1 class="title-font">Empowerment Through Education<br />
+                <span class="highlight">Zoothera Global Academy</span>
+            </h1>
+            <p class="lead mt-4 mx-auto fw-semibold" style="max-width: 850px; font-size: 1.1rem; color: var(--soft-white);">
+                Membangun masa depan di mana manusia dan satwa hidup berdampingan dengan hormat, etis, dan berkelanjutan melalui perubahan pola pikir.
+            </p>
+        </div>
+    </header>
+
+    <!-- ABOUT ACADEMY SECTION -->
+    <section class="section-pad">
+        <div class="container">
+            <div class="row align-items-start">
+                <!-- Kolom Kiri: Judul -->
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h2 class="title-font" style="color: var(--dark-charcoal); border-left: 5px solid var(--accent-gold); padding-left: 20px; transform: translateY(50px);">
+                        About <br> Zoothera Global Academy
+                    </h2>
+                </div>
+            
+                <!-- Kolom Kanan: Paragraf Dua Kolom -->
+                <div class="col-lg-8">
+                    <div class="content-text">
+                        <p class="fw-semibold">
+                            Zoothera Global Academy adalah ekosistem pendidikan global yang dirancang untuk menciptakan perubahan nyata dalam hubungan antara manusia dan hewan. Kami percaya bahwa perlindungan fauna tidak cukup hanya dengan hukum atau kampanye sesaat namun dibutuhkan perubahan pola pikir yang dimulai dari pendidikan, kepemimpinan, teknologi, dan pemberdayaan masyarakat.
+                        </p>
+                        <p class="fw-semibold">
+                            Melalui pendekatan multidisipliner, Zoothera Global Academy menghubungkan ilmuwan, profesional satwa, institusi pendidikan, komunitas lokal, kreator media, dan generasi muda untuk membangun masa depan di mana hewan diperlakukan dengan hormat, etis, dan berkelanjutan.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4-CARD ACADEMY PROGRAM SECTION -->
+    <section class="section-pad bg-pure-white">
+        <div class="container">
+            <h2 class="title-font text-center mb-5" style="color: var(--dark-charcoal);">Zoothera Global Academy Study Program</h2>
+            <div class="row g-4">
+                <div class="col-xl-3 col-md-6">
+                    <div class="solution-card">
+                        <img src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?auto=format&fit=crop&w=500&q=80" alt="Leadership"/>
+                        <div class="card-content">
+                            <h5>Zoothera Leadership Certification</h5>
+                            <p>Program sertifikasi internasional bagi para profesional fauna (zookeeper, pelatih, dan kurator) untuk mengadopsi standar etika dan manajemen modern yang diakui secara global.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="solution-card">
+                        <img src="https://images.unsplash.com/photo-1636820244534-285108e20a6e?auto=format&fit=crop&w=500&q=80" alt="Platform"/>
+                        <div class="card-content">
+                            <h5>Global Educational Platform</h5>
+                            <p>Platform pembelajaran digital interaktif yang menyediakan kurikulum konservasi dan etika fauna bagi institusi pendidikan dari tingkat dasar hingga universitas di seluruh dunia.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="solution-card">
+                        <img src="https://plus.unsplash.com/premium_photo-1723568500817-d4f4fbb4ca81?auto=format&fit=crop&w=500&q=80" alt="Empowerment"/>
+                        <div class="card-content">
+                            <h5>Community Empowerment</h5>
+                            <p>Inisiatif lapangan di daerah konflik antara manusia dan satwa liar, memberikan pelatihan ekonomi berkelanjutan bagi warga lokal agar mereka menjadi garda terdepan pelindung fauna, bukan pemburu.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="solution-card">
+                        <img src="https://images.unsplash.com/photo-1717689410618-9e475beac98f?auto=format&fit=crop&w=500&q=80" alt="Youth"/>
+                        <div class="card-content">
+                            <h5>Kids & Youth Ambassador</h5>
+                            <p>Program pengembangan bakat bagi generasi muda dunia untuk menjadi pemimpin opini (influencer) dalam gerakan pelestarian lingkungan dan hak-hak hewan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HERO RESCUE REHAB SECTION -->
+    <header class="hero-2" id="rehab">
+        <div class="container text-center">
+            <h1 class="title-font">Second Chances Through Sanctuary<br />
+                <span class="highlight">Zoothera Rescue and Rehabilitation</span>
+            </h1>
+            <p class="lead mt-4 mx-auto fw-semibold" style="max-width: 850px; font-size: 1.1rem; color: var(--soft-white);">
+                Mewujudkan pemulihan martabat satwa dan keseimbangan ekosistem melalui penyelamatan yang etis, rehabilitasi yang berdedikasi, dan pelepasan liaran yang berkelanjutan.
+        </div>
+    </header>
+
+    <!-- ABOUT RESCUE REHAB -->
+    <section class="section-pad bg-golden-cream">
+        <div class="container">
+            <div class="row align-items-start">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h2 class="title-font" style="color: var(--dark-charcoal); border-left: 5px solid var(--accent-gold); padding-left: 20px; transform: translateY(70px);">
+                        About <br> Rescue & Rehabilitation
+                    </h2>
+                </div>
+                <div class="col-lg-8">
+                    <div class="content-text">
+                        <p class="fw-semibold">
+                            Rescue & Rehabilitation merupakan sistem terpadu yang dirancang untuk menyelamatkan, memulihkan, dan mengembalikan hewan ke habitat alaminya secara optimal. Program ini tidak hanya berfokus pada penyembuhan fisik, tetapi juga pemulihan psikologis serta kesiapan adaptasi di alam liar. Dengan dukungan teknologi modern dan tim profesional global, Zoothera memastikan setiap hewan mendapatkan perawatan menyeluruh hingga benar-benar siap hidup mandiri kembali.
+                        </p>
+                        <p class="fw-semibold">
+                            Melalui pendekatan berbasis sains, empati, dan inovasi, program ini menjawab tantangan kompleks dalam penanganan satwa korban kekerasan, perdagangan ilegal, maupun bencana alam. Setiap tahap dirancang secara sistematis dari penyelamatan darurat hingga pemantauan pasca-pelepasan untuk menjamin keberhasilan jangka panjang.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4-CARD RESCUE REHAB PROGRAMS-->
+    <section class="section-pad bg-pure-white" id="rehab">
+        <div class="container">
+            <h2 class="title-font text-center mb-5" style="color: var(--dark-charcoal);">Rescue & Rehabilitation Program</h2>
+            <div class="row g-4">
+                <div class="col-xl-3 col-md-6">
+                    <div class="solution-card">
+                        <img src="https://plus.unsplash.com/premium_photo-1722054523646-b9d1217bcf95?auto=format&fit=crop&w=500&q=80" alt="Leadership"/>
+                        <div class="card-content">
+                            <h5>Rapid Response Global Task Force</h5>
+                            <p>Tim evakuasi medis darurat yang siap dikirim ke seluruh penjuru dunia untuk menyelamatkan hewan dari kondisi penyiksaan, bencana alam, atau penangkapan ilegal.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="solution-card">
+                        <img src="https://plus.unsplash.com/premium_photo-1722054522739-ae2be648a177?auto=format&fit=crop&w=500&q=80" alt="Platform"/>
+                        <div class="card-content">
+                            <h5>High Tech Rehabilitation Center</h5>
+                            <p>Proses penyembuhan menggunakan teknologi medis terkini, seperti terapi laser, ruang oksigen hiperbarik, dan prostetik berbasis cetak 3D untuk hewan cacat.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="solution-card">
+                        <img src="https://plus.unsplash.com/premium_photo-1722054520589-dedfc6fef39b?auto=format&fit=crop&w=500&q=80" alt="Empowerment"/>
+                        <div class="card-content">
+                            <h5>Psychological Rewilding</h5>
+                            <p>Program pemulihan trauma bagi hewan yang lama hidup di penangkaran buruk agar mereka memiliki insting bertahan hidup kembali sebelum dilepasliarkan.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="solution-card">
+                        <img src="https://plus.unsplash.com/premium_photo-1722054520641-660df91e21c4?auto=format&fit=crop&w=500&q=80" alt="Youth"/>
+                        <div class="card-content">
+                            <h5>Adaptive Release Program</h5>
+                            <p>Pemantauan pasca-pelepasan menggunakan GPS khusus Zoothera untuk memastikan hewan yang telah sembuh berhasil beradaptasi di alam liar.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BREAK SECTION -->
+     <section class="py-5 bg-dark-charcoal text-center border-top border-bottom" style="border-color: var(--accent-gold) !important;">
+        <div class="container">
+            <div class="row text-center text-white fw-bold">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h2 class="display-4 title-font" style="color: var(--accent-gold);">12.5K+</h2>
+                    <p class="mb-0 text-uppercase letter-spacing-1">Alumni Akademi Edukasi</p>
+                </div>
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h2 class="display-4 title-font" style="color: var(--accent-gold);">850+</h2>
+                    <p class="mb-0 text-uppercase letter-spacing-1">Misi Penyelamatan Satwa</p>
+                </div>
+                <div class="col-md-4">
+                    <h2 class="display-4 title-font" style="color: var(--accent-gold);">120</h2>
+                    <p class="mb-0 text-uppercase letter-spacing-1">Mitra Bisnis ESG</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HERO CORPORATE CONSULTING SECTION -->
+    <header class="hero-3" id="consult">
+        <div class="container text-center"> 
+            <h1 class="title-font">Growth Through Insight & Innovation<br />
+                <span class="highlight">Zoothera Corporate Consulting</span>
+            </h1>
+            <p class="lead mt-4 mx-auto fw-semibold" style="max-width: 850px; font-size: 1.1rem; color: var(--soft-white);">
+                Mewujudkan ekosistem bisnis global yang menghargai kehidupan dengan memastikan setiap langkah strategis perusahaan berkontribusi positif bagi kesejahteraan satwa dan kelestarian alam.
+        </div>
+    </header>
+
+    <!-- ABOUT CORPORATE CONSULT -->
+    <section class="section-pad bg-golden-cream">
+        <div class="container">
+            <div class="row align-items-start">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h2 class="title-font" style="color: var(--dark-charcoal); border-left: 5px solid var(--accent-gold); padding-left: 20px; transform: translateY(60px);">
+                        About <br> Corporate <br> Consulting
+                    </h2>
+                </div>
+                <div class="col-lg-8">
+                    <div class="content-text">
+                        <p class="fw-semibold">
+                            Corporate Consulting merupakan layanan strategis yang dirancang untuk membantu perusahaan besar bertransformasi menjadi entitas bisnis yang lebih etis, berkelanjutan, dan ramah terhadap hewan. Di tengah meningkatnya tuntutan global terhadap praktik ESG (Environmental, Social, and Governance), Zoothera hadir sebagai mitra yang mengintegrasikan nilai keberlanjutan dengan strategi bisnis modern.
+                        </p>
+                        <p class="fw-semibold">
+                            Melalui pendekatan berbasis data, inovasi, dan standar internasional, program ini mendukung perusahaan dalam membangun rantai nilai yang bebas dari eksploitasi hewan. Transformasi ini tidak hanya berdampak positif bagi lingkungan dan fauna, tetapi juga menciptakan nilai jangka panjang bagi perusahaan dan para pemangku kepentingan.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4-CARD CORPORATE COONSULT PROGRAMS-->
+    <section class="section-pad bg-pure-white" id="consult">
+        <div class="container">
+            <h2 class="title-font text-center mb-5" style="color: var(--dark-charcoal);">Corporate Consulting Program</h2>
+            <div class="row g-4">
+                <div class="col-xl-3 col-md-6">
+                    <div class="solution-card">
+                        <div class="card-content">
+                            <i class="bi bi-search text-warning display-4 mb-3 d-block"></i>
+                            <h5>Supply Chain Cruelty-Free Audit</h5>
+                            <p>Membantu perusahaan besar melacak rantai pasokan mereka untuk memastikan tidak ada bahan baku yang melibatkan eksploitasi hewan atau uji coba yang tidak etis.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="solution-card">
+                        <div class="card-content">
+                            <i class="bi bi-gear text-warning display-4 mb-3 d-block"></i>
+                            <h5>R&D Pengganti Bahan Hewani</h5>
+                            <p>Konsultasi teknis bagi industri fashion dan kosmetik untuk beralih ke bahan alternatif berkualitas tinggi yang tidak berasal dari hewan (misal: kulit nabati atau protein sutra sintetis).</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="solution-card">
+                        <div class="card-content">
+                            <i class="bi bi-megaphone text-warning display-4 mb-3 d-block"></i>
+                            <h5>Reputasi dan Komunikasi Strategis</h5>
+                            <p>Membantu perusahaan mengkomunikasikan transisi etis mereka kepada pemegang saham dan publik guna meningkatkan nilai brand dan ESG (Environmental, Social, and Governance).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                    <div class="solution-card">
+                        <div class="card-content">
+                            <i class="bi bi-graph-up-arrow text-warning display-4 mb-3 d-block"></i>
+                            <h5>Investment Advisory</h5>
+                            <p>Memberikan rekomendasi investasi bagi korporasi yang ingin mendanai proyek-proyek berkelanjutan yang berdampak langsung pada kelestarian fauna.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-black">
+    <div class="container">
+        <div class="row mb-4 justify-content-center">
+            
+            <div class="col-lg-3 col-md-5 mb-4">
+                <h4 class="text-white mb-3 fw-bold" style="font-family: 'Montserrat', sans-serif;">ZOOTHERA GROUP</h4>
+                <p class="small lh-lg">Compassion in Every Action, Dignity for Every Life. Menjaga keseimbangan ekosistem global dari pusat kami di Indonesia.</p>
+                <div class="d-flex mt-3">
+                    <a href="#" class="text-white me-3 fs-5"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white me-3 fs-5"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="text-white fs-5"><i class="fas fa-globe"></i></a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-7 mb-4 text-center px-lg-4">
+                <h5 class="footer-title fw-bold text-white">CAKUPAN GLOBAL</h5>
+                
+                <div class="row gy-4 justify-content-center mx-auto" style="max-width: 280px;">
+                    <div class="col-6">
+                        <h3 class="text-gold fw-bold mb-0">120+</h3>
+                        <p class="small text-secondary mb-0">Negara Operasi</p>
+                    </div>
+                    <div class="col-6">
+                        <h3 class="text-gold fw-bold mb-0">500+</h3>
+                        <p class="small text-secondary mb-0">Spesies Terjaga</p>
+                    </div>
+                    <div class="col-6">
+                        <h3 class="text-gold fw-bold mb-0">24/7</h3>
+                        <p class="small text-secondary mb-0">Live Tracking</p>
+                    </div>
+                    <div class="col-6">
+                        <h3 class="text-gold fw-bold mb-0">1M+</h3>
+                        <p class="small text-secondary mb-0">Hektar Konservasi</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-12 mb-4 text-lg-end text-md-center">
+                <h5 class="footer-title fw-bold text-white">KANTOR PUSAT</h5>
+                <p class="small mb-2">Banten, Indonesia <i class="fas fa-map-marker-alt text-gold me-2"></i></p>
+                <p class="small mb-2">South East Asia Hub <i class="fas fa-globe-americas text-gold me-2"></i></p>
+                <p class="small mb-0">zootheraglobalgroup@gmail.com <i class="fas fa-envelope text-gold me-2"></i></p>
+            </div>
+
+        </div>
+        
+        <div class="row border-top border-secondary pt-3 mt-3">
+            <div class="col-12 text-center">
+                <p class="small mb-0 text-secondary">&copy; 2026 Zoothera Global Group. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
